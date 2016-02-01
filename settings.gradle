@@ -1,0 +1,1 @@
+include ':app', ':VitamioLibrary5.0', ':SwipeMenuListLibrary', ':ClingUpnp'

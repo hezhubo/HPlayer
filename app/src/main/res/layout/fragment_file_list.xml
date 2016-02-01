@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/back_to_previous_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/arrow_up_icon" />
+
+        <TextView
+            android:id="@+id/folder_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/back_to_previous_folder"
+            android:background="@drawable/shape_file_path_bg"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/file_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+</LinearLayout>

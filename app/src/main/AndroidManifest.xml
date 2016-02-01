@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hezb.hplayer">
+
+    <!-- 唤醒锁定 允许程序在手机屏幕关闭后后台进程仍然运行 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 访问网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 改变WiFi多播状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <!-- 获取WIFI状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 往sdcard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 往sdcard中读取数据的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+
+    <application
+        android:name=".application.IApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.HomePageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustNothing" />
+
+        <activity
+            android:name=".ui.activity.PlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="file" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="http" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="https" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="file" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="http" />
+                <data
+                    android:mimeType="audio/*"
+                    android:scheme="https" />
+                <data android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="ftp" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.mov" />
+                <data android:pathPattern=".*\\.3gp" />
+                <data android:pathPattern=".*\\.m4a" />
+                <data android:pathPattern=".*\\.3g2" />
+                <data android:pathPattern=".*\\.mj2" />
+                <data android:pathPattern=".*\\.wmv" />
+                <data android:pathPattern=".*\\.ts" />
+                <data android:pathPattern=".*\\.f4v" />
+                <data android:pathPattern=".*\\.mpeg" />
+                <data android:pathPattern=".*\\.mpe" />
+                <data android:pathPattern=".*\\.m1v" />
+                <data android:pathPattern=".*\\.mp2" />
+                <data android:pathPattern=".*\\.mp3" />
+                <data android:pathPattern=".*\\.mod" />
+                <data android:pathPattern=".*\\.wma" />
+                <data android:pathPattern=".*\\.rm" />
+                <data android:pathPattern=".*\\.rmvb" />
+                <data android:pathPattern=".*\\.vob" />
+                <data android:pathPattern=".*\\.ogg" />
+                <data android:pathPattern=".*\\.divx" />
+                <data android:pathPattern=".*\\.qt" />
+                <data android:pathPattern=".*\\.mpg" />
+                <data android:pathPattern=".*\\.pfv" />
+                <data android:pathPattern=".*\\.flv" />
+                <data android:pathPattern=".*\\.mkv" />
+                <data android:pathPattern=".*\\.avi" />
+                <data android:pathPattern=".*\\.asf" />
+                <data android:pathPattern=".*\\.m4v" />
+                <data android:pathPattern=".*\\.mp4" />
+            </intent-filter>
+        </activity>
+
+        <!-- DLNA -->
+        <service android:name="com.hezb.clingupnp.dmc.UpnpService" />
+        <service android:name="com.hezb.clingupnp.dmp.UpnpService" />
+        <service android:name="com.hezb.clingupnp.dms.UpnpService" />
+        <activity
+            android:name=".clingupnp.dmp.DevicesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clingupnp.dms.DMSActivity"
+            android:screenOrientation="portrait" />
+        <!-- DLNA  END -->
+
+    </application>
+
+</manifest>

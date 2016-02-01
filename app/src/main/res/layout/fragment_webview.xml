@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:id="@+id/show_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_e0e0e0">
+
+            <ImageView
+                android:id="@+id/refresh"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/brown"
+                android:padding="10dp"
+                android:src="@drawable/web_refresh_icon" />
+
+            <TextView
+                android:id="@+id/show_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/refresh"
+                android:maxLines="1"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/edit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_e0e0e0"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/address_confirm"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/brown"
+                android:gravity="center"
+                android:text="进入"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/address_confirm"
+                android:background="@color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="textUri"
+                android:maxLines="1"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/title_bar"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="后退" />
+
+        <Button
+            android:id="@+id/go_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="前进" />
+
+        <Button
+            android:id="@+id/go_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="主页" />
+
+        <Button
+            android:id="@+id/show_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看源码" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@id/bottom_bar"
+        android:background="@color/gray" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/divider2"
+        android:layout_below="@id/divider"
+        android:scrollbars="vertical" />
+
+    <ProgressBar
+        android:id="@+id/web_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/title_bar"
+        android:max="100"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        android:progressDrawable="@drawable/seekbar_layer_list"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/html_source_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <com.hezb.hplayer.ui.view.LongPressTextView
+            android:id="@+id/html_source"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="web"
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/black"
+            android:textIsSelectable="true"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/close_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:src="@drawable/close" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

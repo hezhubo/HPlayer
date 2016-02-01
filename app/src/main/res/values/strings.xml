@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">HPlayer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="open">打开</string>
+    <string name="delete">删除</string>
+
+    <string name="save_video_shot_tips">截图已保存：</string>
+    <string name="save_video_shot_error">截图失败！</string>
+    <string name="loading_html_source">正在获取网页源码...</string>
+    <string name="enter">进入</string>
+    <string name="search">搜索</string>
+
+    <string name="play_url_error">播放地址有误，无法播放！</string>
+    <string name="play_error">播放出错啦！</string>
+
+    <string name="child_file_count">(%d)</string>
+
+    <string name="press_to_exit">再按一次退出</string>
+
+</resources>
