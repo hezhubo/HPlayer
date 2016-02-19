@@ -131,12 +131,7 @@ public class PlayerGesture implements OnGestureListener {
         } else { // 左右
             if (absX > absY) {
                 intoSeek = true;
-                float progress = absX / width * 1.2f;
-                if (x1 > x2) {
-                    onRewind(progress);
-                } else {
-                    onForward(progress);
-                }
+                onSeekChange(distanceX);
                 return true;
             }
         }
@@ -154,20 +149,28 @@ public class PlayerGesture implements OnGestureListener {
         return false;
     }
 
-    private void onForward(float progress) {
-        int seek = (int) (mVideoView.getCurrentPosition()
-                + mVideoView.getDuration() * progress);
-        if (seek < mVideoView.getDuration()) {
-            showTime(seek);
+    /**
+     * 左右滑动距离计算快进/快退时间
+     *
+     * @param distance
+     */
+    private void onSeekChange(float distance) {
+        float tempSeek = distance * 1.2f / width * mVideoView.getDuration();
+        if (tempSeek > 0 && tempSeek < 1) {
+            tempSeek = 1;
+        } else if (tempSeek < 0 && tempSeek > -1) {
+            tempSeek = -1;
         }
-    }
-
-    private void onRewind(float progress) {
-        int seek = (int) (mVideoView.getCurrentPosition()
-                - mVideoView.getDuration() * progress);
-        if (seek >= 0) {
-            showTime(seek);
+        if (currentSeek == -1) {
+            currentSeek = (int) mVideoView.getCurrentPosition();
         }
+        int seek = currentSeek - (int) tempSeek;
+        if (seek < 0) {
+            seek = 0;
+        } else if (seek > mVideoView.getDuration()) {
+            seek = (int) mVideoView.getDuration();
+        }
+        showTime(seek);
     }
 
     private void showTime(int seek) {
@@ -177,6 +180,13 @@ public class PlayerGesture implements OnGestureListener {
         if (mTime.getVisibility() != View.VISIBLE) {
             mTime.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * 手指按下
+     */
+    public void onFingerDown() {
+        mLV.initVolume();
     }
 
     /**

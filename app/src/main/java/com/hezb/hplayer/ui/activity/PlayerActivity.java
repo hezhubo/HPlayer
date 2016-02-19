@@ -282,6 +282,12 @@ public class PlayerActivity extends BaseActivity implements View.OnClickListener
                 }
             }
         });
+        mVideoView.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mp) {
+                onVideoPlay();
+            }
+        });
 
     }
 
@@ -622,7 +628,9 @@ public class PlayerActivity extends BaseActivity implements View.OnClickListener
             if (mDlnaFragment != null && mDlnaFragment.isVisible()) {
                 return super.onTouchEvent(event);
             }
-            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            if (action == MotionEvent.ACTION_DOWN) {
+                mPlayerGesture.onFingerDown();
+            } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                 mPlayerGesture.onFingerUp();
             }
             return mDetector.onTouchEvent(event);

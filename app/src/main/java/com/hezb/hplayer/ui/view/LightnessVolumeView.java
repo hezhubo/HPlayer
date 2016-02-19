@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hezb.hplayer.R;
+import com.hezb.hplayer.util.DensityUtil;
 
 /**
  * 亮度，声音调节
@@ -53,7 +54,8 @@ public class LightnessVolumeView extends LinearLayout {
 
     private void initView(Context context) {
         setOrientation(VERTICAL);
-        LayoutParams iconParams = new LayoutParams(40, 40);
+        LayoutParams iconParams = new LayoutParams(
+                DensityUtil.dip2px(context, 20), DensityUtil.dip2px(context, 20));
         LayoutParams textParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
         iconParams.gravity = Gravity.CENTER_HORIZONTAL;
@@ -79,9 +81,16 @@ public class LightnessVolumeView extends LinearLayout {
         showLightness = getScreenBrightness();
         mAudioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//max = 15
-        showVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) * 100 / maxVolume;
+        initVolume();
         this.handler = new Handler();
         this.setVisibility(View.GONE);
+    }
+
+    /**
+     * 设置音量初始值
+     */
+    public void initVolume() {
+        showVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) * 100 / maxVolume;
     }
 
     /**
