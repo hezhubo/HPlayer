@@ -13,6 +13,8 @@ import android.provider.MediaStore;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.DigitalClock;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -26,6 +28,7 @@ import com.hezb.hplayer.base.BaseActivity;
 import com.hezb.hplayer.clingupnp.dmc.DevicesListDialog;
 import com.hezb.hplayer.clingupnp.dmc.DlnaFragment;
 import com.hezb.hplayer.constant.ConstantKey;
+import com.hezb.hplayer.ui.view.BatteryView;
 import com.hezb.hplayer.util.FileManager;
 import com.hezb.hplayer.util.Log;
 import com.hezb.hplayer.util.PlayerGesture;
@@ -66,6 +69,8 @@ public class PlayerActivity extends BaseActivity implements View.OnClickListener
     private View mBack;
     private TextView mName;
     private View mDLNA;
+    private DigitalClock mDigitalClock;
+    private BatteryView mBatteryView;
 
     private GestureDetector mDetector;// 手势
     private PlayerGesture mPlayerGesture;
@@ -225,6 +230,8 @@ public class PlayerActivity extends BaseActivity implements View.OnClickListener
         mBack = findViewById(R.id.player_back);
         mName = (TextView) findViewById(R.id.player_name);
         mDLNA = findViewById(R.id.dlna_devices);
+        mDigitalClock = (DigitalClock) findViewById(R.id.clock);
+        mBatteryView = (BatteryView) findViewById(R.id.battery_view);
     }
 
     /**
@@ -642,10 +649,25 @@ public class PlayerActivity extends BaseActivity implements View.OnClickListener
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // 横屏
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            getWindow().setAttributes(params);
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            mDigitalClock.setVisibility(View.VISIBLE);
+            mBatteryView.setVisibility(View.VISIBLE);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             // 竖屏
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            params.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().setAttributes(params);
+            getWindow().clearFlags(
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            mDigitalClock.setVisibility(View.GONE);
+            mBatteryView.setVisibility(View.GONE);
         }
         // 每次切换屏幕方向完成，需要重新计算VideoView宽高，故重新设置VideoLayout
         mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);
+        mPlayerGesture.setScreenWidth(this);
     }
 }

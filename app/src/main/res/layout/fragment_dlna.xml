@@ -78,7 +78,8 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:progressDrawable="@drawable/seekbar_layer_list"
-            android:thumb="@drawable/transparent_thumb" />
+            android:thumb="@drawable/seekbar_thumb"
+            android:thumbOffset="5dp" />
     </RelativeLayout>
 
 </RelativeLayout>

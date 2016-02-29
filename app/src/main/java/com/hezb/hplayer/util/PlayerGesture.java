@@ -1,6 +1,7 @@
 package com.hezb.hplayer.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Pair;
@@ -31,19 +32,14 @@ public class PlayerGesture implements OnGestureListener {
     private OnSingleTapUpListener singleTapUpListener;
     private Handler mHandler;
 
-    private int left; // VideoView 左边坐标
-    private int right; // VideoView 右边坐标
-    private int width;// VideoView 宽
+    private int width;// 当前屏幕宽
     private int currentSeek = -1;// 当前需要跳转的进度
     private boolean intoSeek = false;// 进入 快进/快退 状态
 
     public PlayerGesture(Activity activity, VideoView videoView, RelativeLayout rootView) {
         mVideoView = videoView;
 
-        Pair<Integer, Integer> screenPair = ScreenResolution.getResolution(activity);
-        width = screenPair.first;
-        left = 0;
-        right = width;
+        setScreenWidth(activity);
 
         // 添加音量，亮度设置展示View，VideoView 的父布局必须是 RelativeLayout
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
@@ -107,20 +103,20 @@ public class PlayerGesture implements OnGestureListener {
         float absDistanceY = Math.abs(distanceY);// distanceY < 0 从上到下
         if (absDistanceX < absDistanceY && !intoSeek) { // Y方向的速率比X方向的大，即 上下 滑动
             if (distanceY > 0) {
-                if (x1 >= (right - width * 0.35)) {
+                if (x1 >= width * (1 - 0.35)) {
                     //在右边，调节声音
                     mLV.changeVolume(LightnessVolumeView.ADD_FLAG);
-                } else if (x1 <= (left + width * 0.35)) {
+                } else if (x1 <= width * 0.35) {
                     //在左边，调节亮度
                     mLV.changeLightness(LightnessVolumeView.ADD_FLAG);
                 }
 
                 return true;
             } else {
-                if (x1 >= (right - width * 0.35)) {
+                if (x1 >= width * (1 - 0.35)) {
                     //在右边，调节声音
                     mLV.changeVolume(LightnessVolumeView.SUB_FLAG);
-                } else if (x1 <= (left + width * 0.35)) {
+                } else if (x1 <= width * 0.35) {
                     //在左边，调节亮度
                     mLV.changeLightness(LightnessVolumeView.SUB_FLAG);
                 }
@@ -180,6 +176,14 @@ public class PlayerGesture implements OnGestureListener {
         if (mTime.getVisibility() != View.VISIBLE) {
             mTime.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * 设置当前屏幕的宽（与方向有关）
+     */
+    public void setScreenWidth(Context context) {
+        Pair<Integer, Integer> screenPair = ScreenResolution.getResolution(context);
+        width = screenPair.first;
     }
 
     /**

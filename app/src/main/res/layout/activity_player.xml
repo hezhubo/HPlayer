@@ -125,7 +125,8 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:progressDrawable="@drawable/seekbar_layer_list"
-            android:thumb="@drawable/transparent_thumb" />
+            android:thumb="@drawable/seekbar_thumb"
+            android:thumbOffset="5dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -152,33 +153,36 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <com.hezb.hplayer.ui.view.BatteryView
-            android:id="@+id/battery_view"
-            android:layout_width="30dp"
-            android:layout_height="15dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <DigitalClock
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@id/battery_view"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/dlna_devices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/dlna_icon" />
 
-        <ImageView
-            android:id="@+id/dlna_devices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@id/clock"
-            android:src="@drawable/dlna_icon" />
+            <DigitalClock
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <com.hezb.hplayer.ui.view.BatteryView
+                android:id="@+id/battery_view"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_marginRight="15dp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
