@@ -14,7 +14,8 @@ android视频播放器，并整合DLNA功能(DMC、DMS、DMP、DMR)
 - [ ] DMR
 
 ## 应用截图
-
+![main](https://github.com/hezhubo/HPlayer/blob/master/screenshot/1646824686987.jpg)
+![dms](https://github.com/hezhubo/HPlayer/blob/master/screenshot/1646824978948.jpg)
 
 ---
 
