@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="video"
+            type="com.hezb.clingupnp.model.MediaInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_media_image"
+            android:layout_width="140dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/media_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black_66"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="@{video.formatDuration}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_media_image"
+            app:layout_constraintEnd_toEndOf="@+id/iv_media_image"
+            tools:text="00:00" />
+
+        <TextView
+            android:id="@+id/media_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{video.displayName}"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_media_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/media_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/media_name"
+            android:layout_marginTop="1dp"
+            android:text="@{video.formatSize}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/media_name"
+            app:layout_constraintTop_toBottomOf="@+id/media_name"
+            tools:text="100MB" />
+
+        <TextView
+            android:id="@+id/media_path"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:maxLines="3"
+            android:text="@{video.path}"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_media_image"
+            app:layout_constraintEnd_toEndOf="@+id/media_name"
+            app:layout_constraintStart_toStartOf="@+id/media_name"
+            tools:text="PATH" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

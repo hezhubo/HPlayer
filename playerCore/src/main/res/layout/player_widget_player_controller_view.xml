@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black">
+
+    <com.hezb.player.render.TextureRenderView
+        android:id="@+id/player_render_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <ProgressBar
+        android:id="@+id/player_loading_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/player_xml_animated_rotate_loading"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/player_center_play_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/player_xml_vector_play_center_icon"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <com.hezb.player.widget.BrightnessVolumeView
+        android:id="@+id/player_brightness_volume_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <RelativeLayout
+        android:id="@+id/player_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#7F000000">
+
+        <ImageView
+            android:id="@+id/player_play_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/player_xml_vector_play_icon" />
+
+        <TextView
+            android:id="@+id/player_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/player_play_pause"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            tools:text="00:00" />
+
+        <TextView
+            android:id="@+id/player_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            tools:text="00:00" />
+
+        <SeekBar
+            android:id="@+id/player_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/player_total_time"
+            android:layout_toRightOf="@id/player_current_time"
+            android:maxHeight="3dp"
+            android:minHeight="1.5dp"
+            android:padding="8dp"
+            android:progressDrawable="@drawable/player_xml_layer_seek_bar_progress_drawable"
+            android:thumb="@drawable/player_xml_vector_seek_bar_thumb_icon"
+            android:thumbOffset="6dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

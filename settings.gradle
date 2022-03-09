@@ -1,1 +1,5 @@
-include ':app', ':VitamioLibrary5.0', ':SwipeMenuListLibrary', ':ClingUpnp'
+include ':app'
+include ':ClingUpnp'
+include ':playerCore'
+include ':playerIJK'
+include ':playerEXO'

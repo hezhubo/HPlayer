@@ -1,22 +1,21 @@
 # HPlayer
-基于vitamio的android视频播放器，并且整合DLNA功能，支持手势操作。
+android视频播放器，并整合DLNA功能(DMC、DMS、DMP、DMR)
+
+* DLNA功能基于[Cling](https://github.com/4thline/cling)
+* 使用[NanoHttpd](https://github.com/NanoHttpd/nanohttpd)实现本地文件共享访问
+* 播放器可选内核[MediaPlayer](https://developer.android.google.cn/reference/android/media/MediaPlayer)、[IjkPlayer](https://github.com/bilibili/ijkplayer)、[ExoPlayer](https://github.com/google/ExoPlayer)
+* 图片加载使用[Glide](https://github.com/bumptech/glide)
+* 项目内图标用的是字节的[IconPark](https://iconpark.oceanengine.com/)
+* 播放器模块参考[GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)造了下轮子
 
 
-此播放器基于Vitamio5.0，整合DLNA功能，可播放本地视频以及网络视频（所支持协议，请看vitamio官方网站）
+## TODO (还未整完的功能)
+- [ ] DMP
+- [ ] DMR
 
-支持手势操作，快进快退，亮度音量，视频放缩等
+## 应用截图
 
-此播放器仅仅是demo，希望能为广大的视频客户端开发者提供点思路，当然仅仅是快速开发:joy:
 
-有问题可以和我交流探讨，互相学习，共同进步。:blush:
+---
 
-QQ:526125686
-
-github不随时更新，本项目先托管在开源中国：https://git.oschina.net/hezb_android/HPlayer
-
-有大变动再往github上提交。
-
-![播放页](http://img.blog.csdn.net/20160229185454948?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center "播放页")
-![主页](http://img.blog.csdn.net/20160229185538386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center "主页")
-![DMS](http://img.blog.csdn.net/20160229185849682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center "局域网DLNA共享文件")
-![本地文件浏览](http://img.blog.csdn.net/20160201153444594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center "本地文件浏览")
+哎，行业太卷，30+老油条挪个坑都难~~~翻翻老项目整理一下知识点，希望疫情快点过去吧！

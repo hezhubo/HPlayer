@@ -1,8 +1,27 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!-- 基础主题属性 -->
+    <style name="Base.Theme.Activity" parent="Base.Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <!-- 播放页主题属性 -->
+    <style name="Theme.Activity.Player" parent="Base.Theme.Activity">
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- 通用提示框Style -->
+    <style name="Theme.Dialog.Common" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
     </style>
 
 </resources>

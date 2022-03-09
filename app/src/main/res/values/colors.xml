@@ -27,12 +27,4 @@
     <color name="gray">#9e9e9e</color>
     <color name="blue_gray">#607d8b</color>
 
-    <!-- 300 -->
-    <color name="color_f36c60">#f36c60</color>
-    <color name="color_e0e0e0">#e0e0e0</color>
-
-    <!-- 400 -->
-    <color name="color_e84e40">#e84e40</color>
-    <color name="color_bdbdbd">#bdbdbd</color>
-
 </resources>

@@ -1,0 +1,34 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_Version
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // ijk底层库基于0.8.8版本使用module-lite.sh配置，支持https
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation project(':playerCore')
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8' // ijk库仍在jcenter上
+}

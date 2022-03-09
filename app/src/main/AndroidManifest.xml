@@ -16,21 +16,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 往sdcard中读取数据的权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 在sdcard中创建/删除文件的权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-
+    <!-- 前台服务的权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".application.IApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/xml_vector_app_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Base.Theme.Activity"
+        android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:name=".ui.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="userPortrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,16 +41,12 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.HomePageActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustNothing" />
-
-        <activity
-            android:name=".ui.activity.PlayerActivity"
+            android:name=".ui.PlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@style/Theme.Activity.Player">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -119,16 +117,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.ContentBrowseActivity"
+            android:screenOrientation="portrait" />
+
         <!-- DLNA -->
-        <service android:name="com.hezb.clingupnp.dmc.UpnpService" />
-        <service android:name="com.hezb.clingupnp.dmp.UpnpService" />
-        <service android:name="com.hezb.clingupnp.dms.UpnpService" />
-        <activity
-            android:name=".clingupnp.dmp.DevicesActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".clingupnp.dms.DMSActivity"
-            android:screenOrientation="portrait" />
+        <service android:name="com.hezb.clingupnp.HttpServerService" />
+        <service android:name="com.hezb.clingupnp.UpnpService" />
+        <service android:name="com.hezb.clingupnp.UpnpDMSService" />
         <!-- DLNA  END -->
 
     </application>
