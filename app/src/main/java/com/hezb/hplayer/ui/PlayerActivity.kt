@@ -2,11 +2,11 @@ package com.hezb.hplayer.ui
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.WindowManager
 import com.hezb.clingupnp.HttpServerService
 import com.hezb.clingupnp.UpnpControlManager
@@ -73,9 +73,6 @@ class PlayerActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
             window.attributes.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN)
-            window.decorView.systemUiVisibility = uiOptions
         }
         setContentView(mViewBinding.root)
 
@@ -83,7 +80,7 @@ class PlayerActivity : BaseActivity() {
     }
 
     private fun initAllMember() {
-        initData()
+        initData(intent)
 
         initPlayer()
 
@@ -131,7 +128,45 @@ class PlayerActivity : BaseActivity() {
         super.onBackPressed()
     }
 
-    private fun initData() {
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            enterPictureInPictureMode()
+        }
+    }
+
+    override fun onPictureInPictureModeChanged(
+        isInPictureInPictureMode: Boolean,
+        newConfig: Configuration?
+    ) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
+        if (isInPictureInPictureMode) {
+            mViewBinding.playerControllerView.play()
+            mViewBinding.playerControllerView.hideFloatView()
+            mViewBinding.playerControllerView.setPlayerGesture(false)
+        } else {
+            mViewBinding.playerControllerView.setPlayerGesture(true)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        initData(intent)
+
+        mViewBinding.playerControllerView.mTitle.text = videoTitle
+        playUri?.let {
+            mPlayer?.let { player ->
+                player.release()
+                player.setMediaSource(this, MediaModel(it))
+                mViewBinding.playerControllerView.play()
+            }
+        }
+    }
+
+    private fun initData(intent: Intent?) {
+        if (intent == null) {
+            return
+        }
         val uri = intent.data
         if (uri == null) {
             val path = intent.getStringExtra(KEY_VIDEO_PATH)

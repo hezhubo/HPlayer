@@ -90,9 +90,7 @@ class ExoPlayer : AbstractMediaPlayer() {
         targetState = STATE_PLAYING
         if (currentState == STATE_PLAYBACK_COMPLETED) {
             mMediaPlayer?.apply {
-                pause()
                 seekTo(0)
-                play()
             }
             currentState = STATE_PLAYING
         } else {
@@ -254,7 +252,9 @@ class ExoPlayer : AbstractMediaPlayer() {
             if (isPlaying) {
                 currentState = STATE_PLAYING
             } else {
-                currentState = STATE_PAUSED
+                if (currentState == STATE_PLAYING) {
+                    currentState = STATE_PAUSED
+                }
                 notifyOnBufferingUpdate()
             }
         }

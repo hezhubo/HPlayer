@@ -31,8 +31,8 @@
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="userPortrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="userPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,10 +42,11 @@
 
         <activity
             android:name=".ui.PlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:exported="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"
+            android:supportsPictureInPicture="true"
             android:theme="@style/Theme.Activity.Player">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
