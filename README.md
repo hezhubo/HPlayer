@@ -9,10 +9,6 @@ android视频播放器，并整合DLNA功能(DMC、DMS、DMP、DMR)
 * 播放器模块参考[GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)造了下轮子
 
 
-## TODO (还未整完的功能)
-- [ ] DMP
-- [ ] DMR
-
 ## 应用截图
 ![main](https://github.com/hezhubo/HPlayer/blob/master/screenshot/1646824686987.jpg)
 ![dms](https://github.com/hezhubo/HPlayer/blob/master/screenshot/1646824978948.jpg)

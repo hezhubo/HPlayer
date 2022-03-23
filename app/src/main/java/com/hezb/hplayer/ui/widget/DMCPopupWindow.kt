@@ -17,7 +17,6 @@ import com.hezb.hplayer.databinding.WidgetDmcPopupWindowBinding
  * File Name:    DMCPopupWindow
  *
  * Description: DMC操作弹窗.
- * TODO 音量显示与控制
  *
  * @author  hezhubo
  * @date    2022年03月05日 01:07
@@ -49,6 +48,7 @@ class DMCPopupWindow(context: Context) : PopupWindow(context) {
         height = WindowManager.LayoutParams.MATCH_PARENT
         isOutsideTouchable = false
         isTouchable = true
+        isClippingEnabled = false
 
         setOnDismissListener {
             stopUpdateTime()
@@ -96,6 +96,13 @@ class DMCPopupWindow(context: Context) : PopupWindow(context) {
                 startUpdateTime()
             }
         })
+
+        viewBinding.btnAddVolume.setOnClickListener {
+            controlCallback?.addVolume()
+        }
+        viewBinding.btnLessVolume.setOnClickListener {
+            controlCallback?.lessVolume()
+        }
     }
 
     private fun reset() {
@@ -160,6 +167,10 @@ class DMCPopupWindow(context: Context) : PopupWindow(context) {
         fun seekTo(position: Long)
 
         fun updateTime()
+
+        fun addVolume()
+
+        fun lessVolume()
     }
 
 }

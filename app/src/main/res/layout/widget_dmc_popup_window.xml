@@ -108,4 +108,24 @@
         app:layout_constraintStart_toEndOf="@+id/tv_current_time"
         app:layout_constraintTop_toTopOf="@+id/iv_play_pause" />
 
+    <!--  音量操作  -->
+    <Button
+        android:id="@+id/btn_add_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintBottom_toTopOf="@+id/btn_less_volume"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btn_less_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_volume" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -126,6 +126,11 @@
         <service android:name="com.hezb.clingupnp.HttpServerService" />
         <service android:name="com.hezb.clingupnp.UpnpService" />
         <service android:name="com.hezb.clingupnp.UpnpDMSService" />
+        <activity
+            android:name="com.hezb.clingupnp.dms.TransportPlayerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         <!-- DLNA  END -->
 
     </application>

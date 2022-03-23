@@ -40,7 +40,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:padding="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="40dp"
             android:src="@drawable/xml_vector_dlna_push_icon" />
 
     </RelativeLayout>

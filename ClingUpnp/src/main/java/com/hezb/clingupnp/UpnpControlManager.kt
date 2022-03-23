@@ -176,9 +176,9 @@ class UpnpControlManager(
      *
      * @param volume
      */
-    fun setVolume(volume: Long) {
+    fun setVolume(volume: Int) {
         mRenderingControlService?.let {
-            controlPoint.execute(object : SetVolume(it, volume) {
+            controlPoint.execute(object : SetVolume(it, volume.toLong()) {
                 override fun success(invocation: ActionInvocation<out Service<*, *>>?) {
                     upnpActionCallback?.onSuccess(ACTION_TYPE_SET_VOLUME)
                 }

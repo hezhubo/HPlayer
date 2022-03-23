@@ -63,6 +63,7 @@ class PlayerActivity : BaseActivity() {
     private var mUpnpControlManager: UpnpControlManager? = null
 
     private var mDMCPopupWindow: DMCPopupWindow? = null
+    private var volumeTag = 0 // 远程音量操作标记
 
     private var playUri: Uri? = null
     private var videoTitle: String? = null
@@ -290,6 +291,16 @@ class PlayerActivity : BaseActivity() {
                         override fun updateTime() {
                             mUpnpControlManager?.getPositionInfo()
                         }
+
+                        override fun addVolume() {
+                            volumeTag = 1
+                            mUpnpControlManager?.getVolume()
+                        }
+
+                        override fun lessVolume() {
+                            volumeTag = -1
+                            mUpnpControlManager?.getVolume()
+                        }
                     }
                     showAtLocation(mViewBinding.root, Gravity.NO_GRAVITY, 0, 0)
                     mDMCPopupWindow = this
@@ -338,9 +349,15 @@ class PlayerActivity : BaseActivity() {
                         // TODO 失败状态处理
                         //  查看判断远端关闭播放器？
                         PlayerLog.i("upnp action callback onFailure type=$type error=$error")
+                        if (type == UpnpControlManager.ACTION_TYPE_GET_VOLUME) {
+                            volumeTag = 0
+                        }
                     }
 
                     override fun getVolumeReceived(volume: Int) {
+                        if (volumeTag != 0) {
+                            setVolume(volume + volumeTag)
+                        }
                     }
 
                     override fun setMuteSuccess(isMute: Boolean) {
