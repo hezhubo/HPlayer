@@ -107,8 +107,10 @@ abstract class AbstractMediaController @JvmOverloads constructor(
                     keepScreenOn = true
                     mMediaPlayer?.let {
                         it.setSurface(surface)
-                        if (it.getVideoWidth() != 0 && it.getVideoHeight() != 0) {
-                            renderView.setVideoSize(it.getVideoWidth(), it.getVideoHeight())
+                        val videoWidth = it.getVideoWidth()
+                        val videoHeight = it.getVideoHeight()
+                        if (videoWidth != 0 && videoHeight != 0) {
+                            renderView.setVideoSize(videoWidth, videoHeight)
                         }
                     }
                 }

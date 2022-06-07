@@ -88,7 +88,11 @@ class HttpServerService : Service() {
         val intent = packageManager.getLaunchIntentForPackage(packageName)
             ?.setPackage(null)
             ?.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        } else {
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_NO_CREATE)
+        }
         val notification = builder
             .setSmallIcon(android.R.drawable.sym_def_app_icon)
             .setContentTitle("HTTP SERVER")

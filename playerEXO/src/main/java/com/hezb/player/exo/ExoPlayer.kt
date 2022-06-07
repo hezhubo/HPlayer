@@ -176,11 +176,11 @@ class ExoPlayer : AbstractMediaPlayer() {
     }
 
     override fun getVideoWidth(): Int {
-        return (mMediaPlayer as? SimpleExoPlayer)?.videoFormat?.width ?: 0
+        return mMediaPlayer?.videoSize?.width ?: 0
     }
 
     override fun getVideoHeight(): Int {
-        return (mMediaPlayer as? SimpleExoPlayer)?.videoFormat?.height ?: 0
+        return mMediaPlayer?.videoSize?.height ?: 0
     }
 
     override fun setSurface(surface: Surface?) {
